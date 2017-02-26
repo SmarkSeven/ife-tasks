@@ -1,0 +1,145 @@
+html,body{
+    margin: 0;
+    padding: 0;
+}
+
+img{
+     width: 30%;
+  }
+
+nav {
+    height: 60px;
+    background: dimgray;
+}
+
+nav img{
+    height: 60px;
+    width: 60px;
+}
+
+nav ul{
+    position: relative;
+    float: right;
+}
+
+nav ul li{
+    float: left;
+    margin-right: 30px;
+}
+
+nav li a{
+    color: white;
+    text-decoration: none;
+}
+a.active{
+    color: hsla(0, 0%, 100%, 0.7)
+}
+
+article,aside{
+        font-size: 14px;
+}
+
+main{
+    padding: 16px;
+    background: lightgray;
+}
+
+article,aside{
+    padding: 20px;
+    background: whitesmoke;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 2px gray;
+}
+
+article p{
+    text-indent: 2em;
+}
+
+h2{
+color:hsla(0, 0%, 5%, 0.7);
+}
+
+article ul{
+    list-style: none;
+}
+
+figure{
+    border: 1px solid lightslategray;
+    width: 100px;
+    height: 100px;
+    padding: 8px;
+    text-align: center;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table td,table th{
+       border: 1px solid lightgray;
+}
+
+thead{
+    background: black;
+    color: white;
+}
+
+tfoot{
+    background: lightgrey;;
+}
+
+figure img{
+    width: 100%;
+}
+
+figcaption{
+margin-bottom: 8px;
+}
+
+aside h1{
+    border-left: 3px solid lightslategray;
+    padding-left: 6px;
+}
+
+footer{
+    background: black;
+    color: white;
+    text-align: center;
+    padding:20px 0 40px 0;
+}
+
+form label{
+    display: inline-block;
+    text-align: right;
+    width: 500px;
+    margin-right: 20px;
+}
+
+
+form p{
+    margin-left:526px;
+    font-size: 12px;
+    color: hsla(0, 0%, 10%, 0.4);
+}
+
+form label::before{
+    content: '';
+    display: block;
+    height: 5px;
+}
+
+form textarea{
+    margin-top: 10px;
+ vertical-align: top;
+ 
+}
+
+form button{
+    width: 100%;
+    margin-top: 10px;
+    padding: .5em 0 .5em 0;
+    color: white;
+    background: dodgerblue;
+}
+
