@@ -40,6 +40,8 @@ article,aside{
 }
 
 main{
+    float: left;
+    margin-right: 350px;
     padding: 16px;
     background: lightgray;
 }
@@ -122,13 +124,13 @@ footer{
 form label{
     display: inline-block;
     text-align: right;
-    width: 500px;
+    width: 100px;
     margin-right: 20px;
 }
 
 
 form p{
-    margin-left:526px;
+    margin-left:125px;
     font-size: 12px;
     color: hsla(0, 0%, 10%, 0.4);
 }
@@ -140,15 +142,38 @@ form label::before{
 }
 
 form textarea{
+    max-width: 40%;
     margin-top: 10px;
  vertical-align: top;
  
 }
 
 form button{
-    width: 100%;
+    display: block;
+    margin: 0 auto;
+    width: 90%;
     margin-top: 10px;
     padding: .5em 0 .5em 0;
     color: white;
     background: dodgerblue;
+}
+
+aside{
+    margin: 15px 0px 0 0;
+    float: left;
+    width: 300px;
+    margin-left: -350px;
+    box-shadow: -1px -1px 1px gray,1px 2px 1px gray;
+
+}
+
+aside::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.container{
+    overflow: hidden;
+    background: lightgray;
 }
