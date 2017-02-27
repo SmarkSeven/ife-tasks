@@ -3,9 +3,12 @@ html,body{
     padding: 0;
 }
 
-img{
-     width: 30%;
-  }
+.container{
+    font-size: 14px;
+    background: lightgray;
+    min-width: 700px;
+    overflow: hidden;
+}
 
 nav {
     height: 60px;
@@ -31,34 +34,40 @@ nav li a{
     color: white;
     text-decoration: none;
 }
+
 a.active{
     color: hsla(0, 0%, 100%, 0.7)
 }
 
-article,aside{
-        font-size: 14px;
+main,aside{
+    float: left;
 }
 
+
 main{
-    float: left;
-    margin-right: 350px;
+    margin-right: 410px;
     padding: 16px;
     background: lightgray;
 }
 
 article,aside{
     padding: 20px;
-    background: whitesmoke;
+    background: white;
     margin-bottom: 20px;
-    box-shadow: 2px 2px 2px gray;
+    box-shadow: -1px -1px 1px gray,1px 2px 1px gray;
+}
+
+
+article img{
+    width: 30%;
 }
 
 article p{
     text-indent: 2em;
 }
 
-h2{
-color:hsla(0, 0%, 5%, 0.7);
+article h2{
+    color:hsla(0, 0%, 5%, 0.7);
 }
 
 article ul{
@@ -66,20 +75,18 @@ article ul{
     padding: 0;
     margin: 0;
 }
+
 article:nth-child(3) ul li{
     display: inline-block;
     overflow: hidden;
 }
 
-article:nth-child(3) ul li figure{
-    margin: 10px;
-}
-
-figure{
+article figure{
     border: 1px solid lightslategray;
     width: 100px;
-    height: 100px;
-    padding: 8px;
+    height: 90px;
+    padding: 2px;
+    margin: 5px;
     text-align: center;
 }
 
@@ -106,31 +113,34 @@ figure img{
 }
 
 figcaption{
-margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
-aside h1{
+aside{
+    margin: 15px 0px 0 0;
+    float: left;
+    width: 350px;
+    margin-left: -407px;
+
+}
+
+aside h3{
     border-left: 3px solid lightslategray;
-    padding-left: 6px;
+    padding-left: 8px;
+    margin-left: 10px;
 }
 
-footer{
-    background: black;
-    color: white;
-    text-align: center;
-    padding:20px 0 40px 0;
-}
 
 form label{
     display: inline-block;
     text-align: right;
-    width: 100px;
+    width: 130px;
     margin-right: 20px;
 }
 
 
 form p{
-    margin-left:125px;
+    margin-left:155px;
     font-size: 12px;
     color: hsla(0, 0%, 10%, 0.4);
 }
@@ -142,38 +152,26 @@ form label::before{
 }
 
 form textarea{
-    max-width: 40%;
+    max-width: 45%;
     margin-top: 10px;
- vertical-align: top;
+    vertical-align: top;
  
 }
 
 form button{
     display: block;
-    margin: 0 auto;
+    margin: 10px auto;;
     width: 90%;
-    margin-top: 10px;
-    padding: .5em 0 .5em 0;
-    color: white;
+    padding: .5em 0;
+    border: none;
+    border-radius: 6px;
     background: dodgerblue;
-}
-
-aside{
-    margin: 15px 0px 0 0;
-    float: left;
-    width: 300px;
-    margin-left: -350px;
-    box-shadow: -1px -1px 1px gray,1px 2px 1px gray;
 
 }
 
-aside::after{
-    content: '';
-    display: block;
-    clear: both;
-}
-
-.container{
-    overflow: hidden;
-    background: lightgray;
+footer{
+    background: black;
+    color: white;
+    text-align: center;
+    padding:20px 0 40px 0;
 }
