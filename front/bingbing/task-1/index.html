@@ -19,7 +19,13 @@
      var display = document.getElementById("aqi-display");
 
      btn.addEventListener("click",function(){
-         display.textContent = input.value;
+         var aqi = Number(input.value);
+         if(!aqi && aqi !== 0){
+             alert("您输入的数据格式有误，请检查后重新输入");
+             display.textContent = "";
+             return;
+         }
+         display.textContent = aqi;
      });
  })();
 
