@@ -28,11 +28,7 @@
     <button id="right-out">右侧出</button>
     <ul id="list"></ul>
     <script type="text/javascript">
-    //TODO
-    // 1.模拟一个队列，实现四个动作哦
-    // 2.检查输入
-    // 3.渲染队列内容
-    // 4.队列item添加监听事件
+   
    (function(){
        
        function createQueue(){
@@ -98,7 +94,7 @@
             }
             return queue.splice(index,1);
         }
-        
+        // TODO优化render实现，减少DOM操作
         /**
          * render
          * 将队列的数据显示到id为list的列表中

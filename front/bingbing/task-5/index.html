@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      #list{
+        position: relative;
+        padding: 0;
+        overflow: hidden;
+        min-width: 720px;
+       }
+       
+      #list li{
+          display: inline-block;
+          width: 10px;
+          bottom: 0;
+          list-style: node;
+          background: #d45d5c;
+          color: white;
+          margin-left:2px;
+      }
+    </style>
+</head>
+<body>
+    <input id="input" type="text" name="number-input" placeholder="请输入10--100的数字"> 
+    <button id="left-in">左侧入</button>
+    <button id="right-in">右侧入</button>
+    <button id="left-out">左侧出</button>
+    <button id="right-out">右侧出</button>
+     <button id="resort-up">冒泡升序</button>
+      <button id="resort-down">冒泡降序</button>
+    <ul id="list"></ul>
+    <script type="text/javascript">
+   
+   (function(){
+       
+       function createQueue(){
+           return [];
+       }
+       
+       /**
+        * leftIn
+        * 从队列queue的左侧添加数据v
+        */
+       function leftIn(queue,v){
+           if(!Number(v)){
+               alert("输入数据格式有误，你的输入是："+v);
+               return;
+           }
+           if(queue.lenght>=60){
+               alert("sorry，队列已经满了");
+               return;
+           }
+           if(v>100 || v<10){
+               alert("请输入10--100的数字");
+               return;
+           }
+           queue.unshift(v);
+       }
+       
+       /**
+        * rightIn
+        * 从队列queue的右侧添加数据v
+        */
+       function rightIn(queue,v){
+           if(!Number(v)){
+               alert("输入数据格式有误，你的输入是："+v);
+               return;
+           }
+            if(queue.lenght>=60){
+               alert("sorry，队列已经满了");
+               return;
+           }
+           if(v>100 || v<10){
+               alert("请输入10--100的数字");
+               return;
+           }
+           queue.push(v);
+       }
+       
+       /**
+        * leftOut
+        * 返回队列queue的第一个元素并删除
+        */
+        function leftOut(queue){
+            if(queue.length ==0){
+                alert("队列是空的");
+                return;
+            }
+            return queue.shift();
+        }
+        
+        /**
+        * leftOut
+        * 返回队列queue的最后一个元素并删除
+        */
+        function rightOut(queue){
+            if(queue.length ==0){
+                alert("队列是空的");
+                return;
+            }
+            return queue.pop();
+        }
+       
+       
+       /**
+        * removeIndex
+        * 删除队列中指定索引的元素并返回
+        */
+        function removeIndex(queue,index){
+            if(queue.length<=index){
+                alert("sorry，越界了");
+                return;
+            }
+            return queue.splice(index,1);
+        }
+        
+        /**
+        * sleep
+        * 模拟休眠
+        */
+        function Sleeper(s){
+            var self = this;
+            self.sleep = s;
+            self.step    = 0;
+            self.actions = [];
+
+            self.push = function(func) {
+                self.actions.push(func);
+                return self;
+            }
+            self.run_next = function() {
+                if (self.step < self.actions.length) {
+                    var action = self.actions[self.step];
+                    action();
+                    ++self.step;
+                    setTimeout(self.run_next, self.sleep);
+                }
+            }
+            self.run = function() {
+                self.run_next();
+            }
+            return self;
+          }
+        // TODO优化render实现，减少DOM操作
+        /**
+         * render
+         * 将队列的数据显示到id为list的列表中
+         */
+        function render(data){
+            var list = document.getElementById("list");
+            list.innerHTML = "";
+            data.forEach((item,i)=>{
+                let index = i;
+                let li = document.createElement("li");
+                li.style.height = item+"px";
+                li.style.marginTop = (100-item)+"px";
+                li.addEventListener("click",()=>{
+                    removeIndex(data,index);
+                    render(data);
+                 });
+               list.append(li);
+             });
+        }
+         
+        function init(){
+            var queue = createQueue();
+            var input = document.getElementById("input");
+            
+            for(let i=10; i < 69;i++){
+                
+                if(i%2 == 0){
+                    queue.unshift(i);
+                }else{
+                    queue.push(i);
+                }
+            }
+            render(queue);
+            
+            input.onkeypress = function(event){
+                if(event.keyCode == 13 && this.value!=""){
+                   rightIn(queue,input.value);
+                   input.value="";
+                   render(queue);
+                }
+            };
+            input.onchange = function(event){
+                this.value = this.value.replace(/\D/g,'')
+                if(this.value>100 || this.value<10){
+                    this.value = '';
+                }
+            }
+            
+            
+            document.getElementById("left-in").addEventListener("click",()=>{
+                leftIn(queue,input.value);
+                input.value="";
+                render(queue);
+            });
+            document.getElementById("right-in").addEventListener("click",()=>{
+                rightIn(queue,input.value);
+                input.value="";
+                render(queue);
+            });
+            document.getElementById("left-out").addEventListener("click",()=>{
+                alert(leftOut(queue));
+                render(queue);
+            });
+            document.getElementById("right-out").addEventListener("click",()=>{
+                alert(rightOut(queue));
+                render(queue);
+            });
+            
+            var resortUpBtn = document.getElementById("resort-up");
+            resortUpBtn.addEventListener("click",()=>{
+                resortDownBtn.disabled = true;
+                resortUpBtn.disabled = true;
+                var len=queue.length;
+                var temp;
+                var sleeper = new Sleeper(50);
+                while(len>0){
+                    for(let j=0;j<len;j++){
+                        if(queue[j]>queue[j+1]){
+                            temp=queue[j];
+                            queue[j]=queue[j+1];
+                            queue[j+1]=temp;
+                            let data = queue.slice(0,queue.length);
+                            sleeper.push(()=>{render(data)});
+                        }
+                    }
+                    len--;
+                }
+                sleeper.push(()=>{resortDownBtn.disabled = false;})
+                sleeper.push(()=>{resortUpBtn.disabled = false;})
+                sleeper.run();
+            });
+            
+            var resortDownBtn =  document.getElementById("resort-down");
+            resortDownBtn.addEventListener("click",()=>{
+                resortUpBtn.disabled = true;
+                resortDownBtn.disabled = true;
+                var len=queue.length;
+                var temp;
+                var sleeper = new Sleeper(50);
+                while(len>0){
+                    for(let j=0;j<len;j++){
+                        if(queue[j]<queue[j+1]){
+                            temp=queue[j];
+                            queue[j]=queue[j+1];
+                            queue[j+1]=temp;
+                            let data = queue.slice(0,queue.length);
+                            sleeper.push(()=>{render(data)});
+                        }
+                    }
+                    len--;
+                }
+                sleeper.push(()=>{resortUpBtn.disabled = false;})
+                sleeper.push(()=>{resortDownBtn.disabled = false;})
+                sleeper.run();
+             
+            });
+        }
+        
+        init();
+   })();
+     </script>
+</body>
+</html>
