@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      #list{
+        padding: 0;
+       }
+       
+      #list li{
+          display: inline-block;
+          list-style: node;
+          background: #d45d5c;
+          color: white;
+          padding: .2em .3em;
+          margin:.2em .5em .2em 0;
+      }
+      #input{
+          vertical-align: top;
+      }
+      #search-input{
+          margin-top: 25px;
+          width: 240px;
+      }
+      #list li.mark{
+        background: darkcyan;
+      }
+    </style>
+</head>
+<body>
+    <textarea  id="input" rows="5" cols="30"></textarea>
+    <button id="left-in">左侧入</button>
+    <button id="right-in">右侧入</button>
+    <button id="left-out">左侧出</button>
+    <button id="right-out">右侧出</button>
+    <br>
+    <input id="search-input" type="text" name="search" value="">
+    <button id="search-btn">查找</button>
+    <ul id="list"></ul>
+    <script type="text/javascript">
+   
+   (function(){
+       
+       function createQueue(){
+           return [];
+       }
+       
+       /**
+        * leftIn
+        * 从队列queue的左侧添加数据v
+        */
+       function leftIn(queue,...item){
+           queue.unshift(...item);
+       }
+       
+       /**
+        * rightIn
+        * 从队列queue的右侧添加数据v
+        */
+       function rightIn(queue,...item){
+           queue.push(...item);
+       }
+       
+       /**
+        * leftOut
+        * 返回队列queue的第一个元素并删除
+        */
+        function leftOut(queue){
+            if(queue.length ==0){
+                alert("队列是空的");
+                return;
+            }
+            return queue.shift();
+        }
+        
+        /**
+        * leftOut
+        * 返回队列queue的最后一个元素并删除
+        */
+        function rightOut(queue){
+            if(queue.length ==0){
+                alert("队列是空的");
+                return;
+            }
+            return queue.pop();
+        }
+       
+       /**
+        * removeIndex
+        * 删除队列中指定索引的元素并返回
+        */
+        function removeIndex(queue,index){
+            if(queue.length<=index){
+                alert("sorry，越界了");
+                return;
+            }
+            return queue.splice(index,1)
+        }
+        
+        /**
+         * parseInput
+         * 解析输入字符串，返回一个数组
+         */
+         function parseInput(inputStr){
+            return inputStr.match(/\w+/g);
+         }
+        /**
+         * render
+         * 将队列的数据显示到id为list的列表中
+         */
+        function render(data){
+            var list = document.getElementById("list");
+            list.innerHTML = "";
+            data.forEach((item,i)=>{
+                let index = i;
+                let li = document.createElement("li");
+                li.textContent = item;
+                li.addEventListener("click",()=>{
+                    removeIndex(data,index);
+                    render(data);
+                 });
+               list.append(li);
+             });
+        }
+         
+        function init(){
+            var queue = createQueue();
+            var input = document.getElementById("input");
+            
+            var searchInput = document.getElementById("search-input");
+            
+            
+            document.getElementById("left-in").addEventListener("click",()=>{
+                leftIn(queue,...parseInput(input.value));
+                input.value="";
+                render(queue);
+            });
+            document.getElementById("right-in").addEventListener("click",()=>{
+                rightIn(queue,...parseInput(input.value));
+                input.value="";
+                render(queue);
+            });
+            document.getElementById("left-out").addEventListener("click",()=>{
+                alert(leftOut(queue));
+                render(queue);
+            });
+            document.getElementById("right-out").addEventListener("click",()=>{
+                alert(rightOut(queue));
+                render(queue);
+            });
+            document.getElementById("search-btn").addEventListener("click",()=>{
+                var input  = searchInput.value.trim();
+                searchInput.value = "";
+                var list = document.getElementById("list");
+                var re =new RegExp(input);
+                Array.prototype.forEach.call(list.children,(node)=>{
+                    
+                   var value =  node.textContent.trim();
+                   console.log(node.classList)
+                   if(re.test(value)){
+                          node.classList.add("mark");
+                          return;
+                   }
+                   node.classList.remove("mark");
+                });
+            });
+        }
+        
+        init();
+   })();
+     </script>
+</body>
+</html>
