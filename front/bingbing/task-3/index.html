@@ -79,6 +79,7 @@ function sortAqiData(data) {
 function render(data) {
 
     var resort = document.getElementById("resort");
+    resort.innerHTML = "";
     data.forEach((item,i)=>{
         let li = document.createElement("li");
         li.innerHTML = "第"+indexs[i]+"名："+item[0]+" 空气质量：<b>"+item[1]+"</b>";
