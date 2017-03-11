@@ -1,0 +1,94 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "微软雅黑"; }
+
+nav {
+  position: relative;
+  background: #fff;
+  height: 0.04375rem;
+  width: 1rem; }
+  nav #logo {
+    height: 0.04375rem;
+    width: 0.02422rem;
+    margin: 0 0.00703rem 0 0.04609rem;
+    padding: 0.00937rem 0; }
+  nav #title {
+    position: absolute;
+    font-size: 0.01641rem;
+    top: 0;
+    left: 0.07812rem;
+    height: 0.04375rem;
+    line-height: 0.04375rem;
+    color: #393a3a; }
+  nav #nav {
+    position: absolute;
+    color: #787b83;
+    font-size: 0.01094rem;
+    right: 0;
+    top: 0;
+    margin: 0;
+    margin-right: 0.00937rem;
+    padding: 0.00469rem 0 0.00156rem 0;
+    height: 0.04375rem;
+    overflow: hidden; }
+    nav #nav li {
+      display: inline-block;
+      margin-right: 0.02656rem;
+      line-height: 0.03594rem;
+      padding: 0 0.00937rem; }
+    nav #nav li.active {
+      border-bottom: 4px solid red; }
+  nav #login {
+    color: red; }
+
+.section-1 {
+  padding: 0.15625rem 0 0 0.08984rem;
+  height: 0.53906rem;
+  color: white;
+  background: url("../images/task_1_7_1_10.png");
+  background-size: cover; }
+  .section-1 .theme {
+    font-size: 0.04688rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 0.01172rem; }
+    .section-1 .theme::first-letter {
+      text-transform: uppercase; }
+  .section-1 .slogan {
+    font-size: 0.01641rem;
+    font-weight: 200;
+    line-height: 0.02734rem; }
+  .section-1 .link {
+    display: block;
+    width: 0.25781rem;
+    height: 0.05078rem;
+    background: #e74f4d;
+    text-align: center;
+    line-height: 0.05078rem;
+    text-decoration: none;
+    color: white;
+    font-size: 0.02344rem;
+    font-weight: 300;
+    margin-top: 0.03906rem; }
+
+.section-2 {
+  position: relative;
+  display: flex;
+  height: 0.19531rem;
+  justify-content: space-around; }
+  .section-2 div {
+    padding-top: 0.03516rem;
+    flex: 1 1 0.25rem;
+    text-align: center; }
+    .section-2 div p:nth-of-type(3) {
+      border-right-width: 0; }
+  .section-2 p {
+    margin-top: 46px;
+    padding-bottom: 0.01562rem;
+    font-size: 0.01094rem;
+    color: #767777;
+    border-right: 2px solid #767777; }
